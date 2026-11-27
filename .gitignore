@@ -1,0 +1,19 @@
+# data is downloaded / generated locally (8 GB raw file does not fit on GitHub)
+data/*
+!data/README.md
+
+# fitted objects are re-created by the notebooks
+models/
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# secrets and OS files
+kaggle.json
+.DS_Store
+Thumbs.db
