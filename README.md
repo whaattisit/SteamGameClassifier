@@ -2,26 +2,33 @@
 
 Predicting player recommendations from Steam review text.
 
-Data Mining — Final Project · Project type: **Text Mining** (binary classification of review text)
+Data Mining - Final Project. Project type: Text Mining (binary classification of review text)
 
 ## Team
 | Member | Contribution |
 |---|---|
-| Tursun Amina, Myrzakassymov Azizkhan, Shynybek Almira | Part 1, sections 1–5: problem definition, dataset description, data preprocessing, EDA, feature engineering |
+| Tursun Amina, Myrzakassymov Azizkhan, Shynybek Almira | Part 1, sections 1-5: problem definition, dataset description, data preprocessing, EDA, feature engineering |
 
 ## Problem
-Every Steam review has a binary label chosen by its author — *Recommended* or *Not recommended* — and free text. The project builds a model that predicts the recommendation from the text (plus a few reviewer attributes known at the moment of writing) and explains which words and player properties signal a negative review. Such a model lets developers find negative feedback in large volumes of reviews and can be transferred to unlabelled feedback (forums, social media, support tickets).
+Every Steam review has a binary label chosen by its author - Recommended or Not recommended - and free text. The project builds a model that predicts the recommendation from the text (plus a few reviewer attributes known at the moment of writing) and explains which words and player properties signal a negative review. Such a model lets developers find negative feedback in large volumes of reviews and can be transferred to unlabelled feedback (forums, social media, support tickets).
 
 Research questions and hypotheses:
-* **RQ1** — Can the review text alone predict the recommendation significantly better than a majority-class baseline?
-* **H1** — Players who do not recommend a game had less playtime at the moment of the review.
-* **H2** — Negative reviews are longer than positive ones.
-* **H3** — The recommendation rate differs for reviews written during early access and for free copies.
+
+RQ1: Can the review text alone predict the recommendation significantly better than a majority-class baseline?
+
+H1: Players who do not recommend a game had less playtime at the moment of the review.
+
+H2: Negative reviews are longer than positive ones.
+
+H3: The recommendation rate differs for reviews written during early access and for free copies.
 
 ## Dataset
-* **Steam Reviews Dataset 2021** — https://www.kaggle.com/datasets/najzeko/steam-reviews-2021
-* ≈ 21.7 million reviews, 23 columns, 300+ games, collected from the Steam API in January 2021, licence GPL-2.
-* The project uses a reproducible 2% random sample of the English reviews (≈ 200,000 rows).
+
+Steam Reviews Dataset 2021: https://www.kaggle.com/datasets/najzeko/steam-reviews-2021
+
+~21.7 million reviews, 23 columns, 300+ games, collected from the Steam API in January 2021, licence GPL-2.
+
+The project uses a reproducible 2% random sample of the English reviews (~200,000 rows).
 
 ## Setup
 Python 3.12 or newer (required by numpy 2.5 and scipy 1.18).
@@ -37,13 +44,13 @@ pip install -r requirements.txt
 ```
 
 ### Download the data
-**Option A — Kaggle CLI** (needs an API token: Kaggle → Settings → API → *Create New Token*; put `kaggle.json` into `~/.kaggle/` on macOS/Linux or `%USERPROFILE%\.kaggle\` on Windows):
+Option A - Kaggle CLI (needs an API token: Kaggle -> Settings -> API -> Create New Token; put `kaggle.json` into `~/.kaggle/` on macOS/Linux or `%USERPROFILE%\.kaggle\` on Windows):
 
 ```bash
 kaggle datasets download -d najzeko/steam-reviews-2021 -p data/raw --unzip
 ```
 
-**Option B — manually:** download the archive from the Kaggle page, unzip it and put `steam_reviews.csv` into `data/raw/` (create the `raw` folder inside `data/` if it does not exist).
+Option B - manually: download the archive from the Kaggle page, unzip it and put `steam_reviews.csv` into `data/raw/` (create the `raw` folder inside `data/` if it does not exist).
 
 The expected path is `data/raw/steam_reviews.csv`.
 
@@ -78,13 +85,13 @@ The expected path is `data/raw/steam_reviews.csv`.
 ```
 
 ## Run order
-1. `notebooks/01_problem_dataset_preprocessing.ipynb` — *Kernel → Restart & Run All*.
-   The first run reads the 8 GB file once (≈ 10–20 min) and caches the sample in `data/interim/`; later runs take seconds.
-   Outputs: `data/processed/{train,val,test}.parquet`, `models/preprocessor_tabular.joblib`, `reports/figures/01-06*.png`, `reports/tables/*.csv`.
-2. `notebooks/02_eda.ipynb` — exploratory data analysis on the training set (≈ 1–3 min).
-   Outputs: `reports/figures/07-17*.png`, `reports/tables/eda_*.csv` (summary statistics, correlations, statistical tests, conclusions).
-3. `notebooks/03_feature_engineering.ipynb` — new features, feature selection (filters, RFECV, chi²), PCA / TruncatedSVD, final feature pipeline (≈ 5–15 min).
-   Outputs: `data/processed/{train,val,test}_features.parquet`, `models/feature_pipeline.joblib`, `models/feature_config.json`, `reports/figures/18-28*.png`, `reports/tables/fe_*.csv`.
+1. `notebooks/01_problem_dataset_preprocessing.ipynb` - Kernel -> Restart & Run All.
+ The first run reads the 8 GB file once (~10-20 min) and caches the sample in `data/interim/`; later runs take seconds.
+ Outputs: `data/processed/{train,val,test}.parquet`, `models/preprocessor_tabular.joblib`, `reports/figures/01-06*.png`, `reports/tables/*.csv`.
+2. `notebooks/02_eda.ipynb` - exploratory data analysis on the training set (~1-3 min).
+ Outputs: `reports/figures/07-17*.png`, `reports/tables/eda_*.csv` (summary statistics, correlations, statistical tests, conclusions).
+3. `notebooks/03_feature_engineering.ipynb` - new features, feature selection (filters, RFECV, chi²), PCA / TruncatedSVD, final feature pipeline (~5-15 min).
+ Outputs: `data/processed/{train,val,test}_features.parquet`, `models/feature_pipeline.joblib`, `models/feature_config.json`, `reports/figures/18-28*.png`, `reports/tables/fe_*.csv`.
 
 Notebooks 02 and 03 need the output of notebook 01; run them in this order.
 

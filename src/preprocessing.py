@@ -69,11 +69,10 @@ def scan_full_dataset(
 ):
     """Read the 8 GB CSV once, in chunks.
 
-    During the single pass it
-      * collects statistics of the FULL dataset (rows, missing values,
-        languages, class balance, duplicates, per-game aggregates);
-      * draws a simple random sample of `frac` of the reviews in `language`
-        (every review gets an independent coin flip with probability `frac`).
+    During the single pass it collects statistics of the FULL dataset (rows,
+    missing values, languages, class balance, duplicates, per-game aggregates)
+    and draws a simple random sample of `frac` of the reviews in `language`
+    (every review gets an independent coin flip with probability `frac`).
 
     Returns (sample_df, stats_dict, game_stats_df). Every column of the sample
     is still a raw string; types are fixed later by `convert_types`.
