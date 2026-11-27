@@ -1,0 +1,7 @@
+1. Created 11 new features from information available at review time; 5 further candidates were rejected because of leakage.
+2. Tabular selection: 20 candidates -> 3 quasi-constant and 2 redundant removed -> RFECV with the one-standard-error rule kept 11 of 15 (CV ROC-AUC 0.7365; best 0.7387 with 15).
+3. New features in the final set: char_count, exclamation_count, question_count, negation_count, review_age_days, uppercase_ratio, has_formatting.
+4. Text: 100,000 TF-IDF terms; chi² selection did not improve validation F1-macro, all terms are kept.
+5. Feature groups: best combination on validation = text + tabular + game (F1-macro 0.8242); text-free combination: 0.6360.
+6. PCA on tabular features: not used; TruncatedSVD on text: not used (decided by validation F1-macro).
+7. Final pipeline: 100,293 features, probe validation F1-macro 0.8242, PR-AUC (negative) 0.8045. The test set was not used.

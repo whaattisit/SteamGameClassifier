@@ -1,0 +1,16 @@
+,rfe_rank,selected,coefficient
+has_formatting,1,True,0.8647480567282408
+negation_count,1,True,-0.5342872195433744
+review_age_days,1,True,-0.30227877512926077
+exclamation_count,1,True,0.2508019898699803
+author_playtime_at_review,1,True,0.21166965860557724
+char_count,1,True,-0.19334957232555583
+received_for_free,1,True,0.11424928341600406
+steam_purchase,1,True,0.10902575521572569
+written_during_early_access,1,True,-0.10584364451617127
+question_count,1,True,-0.103242504618366
+uppercase_ratio,1,True,-0.07877972545173052
+author_num_reviews,2,False,
+reviews_per_game_owned,3,False,
+avg_word_length,4,False,
+author_num_games_owned,5,False,
